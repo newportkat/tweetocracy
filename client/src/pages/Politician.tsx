@@ -1,12 +1,15 @@
 import axios from "axios"
 import React, { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
+import WordCloud from "react-wordcloud"
+import { stopWords } from "../data/stopWords"
 import { twitterData } from "../data/twitterData"
 
 const Politician = () => {
     const { id } = useParams()
     const [tweets, setTweets] = useState([])
     const [politician, setPolitician] = useState(null)
+    const [wordCloudData, setWordCloudData] = useState([])
 
     const fetchPolitician = async () => {
         try {
@@ -18,6 +21,33 @@ const Politician = () => {
             console.log(error)
         }
     }
+
+    const processTweetsForWordCloud = (tweets) => {
+        const text = tweets.map((tweet) => tweet.text).join(" ")
+        const words = text
+            .toLowerCase()
+            .replace(/[^\w\s]/g, "")
+            .split(/\s+/)
+            .filter((word) => word.length > 3 && !stopWords.has(word))
+
+        const wordCounts = words.reduce((acc, word) => {
+            acc[word] = (acc[word] || 0) + 1
+            return acc
+        }, {})
+
+        const wordCloudData = Object.entries(wordCounts).map(
+            ([text, value]) => ({
+                text,
+                value: value * 10,
+            })
+        )
+
+        return wordCloudData
+    }
+
+    useEffect(() => {
+        fetchPolitician()
+    }, [id])
 
     useEffect(() => {
         const fetchTweets = async () => {
@@ -32,15 +62,12 @@ const Politician = () => {
                     `http://localhost:3001/api/tweets/${politician.twitterId}`
                 )
                 setTweets(response.data)
+                setWordCloudData(processTweetsForWordCloud(response.data))
             } catch (error) {
                 console.log(error)
             }
         }
         fetchTweets()
-    }, [id])
-
-    useEffect(() => {
-        fetchPolitician()
     }, [id])
 
     return (
@@ -66,6 +93,14 @@ const Politician = () => {
                             </ul>
                         ) : (
                             <p>Loading tweets...</p>
+                        )}
+                    </div>
+                    <div>
+                        <h2>Word Cloud:</h2>
+                        {wordCloudData.length > 0 ? (
+                            <WordCloud words={wordCloudData} />
+                        ) : (
+                            <p>Loading word cloud...</p>
                         )}
                     </div>
                 </div>
