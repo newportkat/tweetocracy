@@ -35,7 +35,7 @@ export const processTweetsForWordCloud = (tweets) => {
 
     const wordCloudData = Object.entries(wordCounts).map(([text, value]) => ({
         text,
-        value: value * 50,
+        value
     }))
 
     return wordCloudData
