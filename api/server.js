@@ -34,7 +34,7 @@ app.get("/api/tweets/:twitterId", async (req, res) => {
 
 const getUserTweets = async (url) => {
     const params = {
-        max_results: 5,
+        max_results: 20,
         "tweet.fields": "created_at",
         expansions: "author_id",
     }
