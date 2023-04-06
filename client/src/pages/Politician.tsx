@@ -4,14 +4,35 @@ import { useParams } from "react-router-dom"
 import WordCloud from "react-wordcloud"
 import { stopWords } from "../data/stopWords"
 import { twitterData } from "../data/twitterData"
+import {
+    calculateAverageSentiment,
+    calculateOverallEngagement,
+    fetchPolitician,
+    processTweetsForWordCloud,
+} from "../utils/utils"
 
 const Politician = () => {
     const { id } = useParams()
     const [tweets, setTweets] = useState([])
     const [politician, setPolitician] = useState(null)
     const [wordCloudData, setWordCloudData] = useState([])
+    const [overallEngagement, setOverallEngagement] = useState(0)
+    const [averageSentiment, setAverageSentiment] = useState(0)
 
-    const fetchPolitician = async () => {
+    const sentimentEmojis = [
+        "🤬",
+        "😠",
+        "😔",
+        "🙁",
+        "😐",
+        "🙂",
+        "😊",
+        "😄",
+        "😁",
+        "😍",
+    ]
+
+    const fetchPolitician = async (id) => {
         try {
             const response = await axios.get(
                 `https://theyvoteforyou.org.au/api/v1/people/${id}.json?key=w2GqY%2FTxcwhegS1F4Iin`
@@ -22,37 +43,15 @@ const Politician = () => {
         }
     }
 
-    const processTweetsForWordCloud = (tweets) => {
-        const text = tweets.map((tweet) => tweet.text).join(" ")
-        const words = text
-            .toLowerCase()
-            .replace(/[^\w\s]/g, "")
-            .split(/\s+/)
-            .filter((word) => word.length > 3 && !stopWords.has(word))
-
-        const wordCounts = words.reduce((acc, word) => {
-            acc[word] = (acc[word] || 0) + 1
-            return acc
-        }, {})
-
-        const wordCloudData = Object.entries(wordCounts).map(
-            ([text, value]) => ({
-                text,
-                value: value * 10,
-            })
-        )
-
-        return wordCloudData
-    }
-
     useEffect(() => {
-        fetchPolitician()
+        fetchPolitician(id)
     }, [id])
 
     useEffect(() => {
         const fetchTweets = async () => {
             try {
                 const politician = twitterData.find((p) => p.id === Number(id))
+
                 if (!politician || !politician.twitterId) {
                     throw new Error(
                         "Politician not found or does not have a Twitter ID"
@@ -61,8 +60,18 @@ const Politician = () => {
                 const response = await axios.get(
                     `http://localhost:3001/api/tweets/${politician.twitterId}`
                 )
+
                 setTweets(response.data)
+
                 setWordCloudData(processTweetsForWordCloud(response.data))
+
+                const engagementScore = calculateOverallEngagement(
+                    response.data
+                )
+                setOverallEngagement(engagementScore)
+
+                const sentimentScore = calculateAverageSentiment(response.data)
+                setAverageSentiment(sentimentScore)
             } catch (error) {
                 console.log(error)
             }
@@ -94,6 +103,17 @@ const Politician = () => {
                         ) : (
                             <p>Loading tweets...</p>
                         )}
+                    </div>
+                    <div>
+                        <h2>Overall Engagement:</h2>
+                        <p>{overallEngagement.toFixed(0)}</p>
+                    </div>
+                    <div>
+                        <h2>Average Sentiment Score:</h2>
+                        <p>
+                            {averageSentiment}
+                            {sentimentEmojis[Math.floor(averageSentiment) + 4]}
+                        </p>
                     </div>
                     <div>
                         <h2>Word Cloud:</h2>
