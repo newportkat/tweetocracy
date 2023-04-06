@@ -9,6 +9,7 @@ import Party from "./pages/Party"
 import Policies from "./pages/Policies"
 import Policy from "./pages/Policy"
 import Politician from "./pages/Politician"
+import VignetteOverlay from "./components/VignetteOverlay"
 
 const Layout = () => {
     return (
@@ -55,11 +56,13 @@ const router = createBrowserRouter([
 ])
 
 const App = () => {
-    return (
-        <div>
-            <RouterProvider router={router} />
-        </div>
-    )
-}
+  return (
+    <div className="relative bg-blue-50">
+      <RouterProvider router={router} />
+      <VignetteOverlay />
+    </div>
+  );
+};
 
-export default App
+export default App;
+

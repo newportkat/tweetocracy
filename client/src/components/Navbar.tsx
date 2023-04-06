@@ -3,9 +3,9 @@ import { Link } from "react-router-dom"
 
 const Navbar = () => {
     return (
-        <nav>
-            <ul>
-                <li>
+        <nav className="py-10 px-20">
+            <ul className="flex gap-20 items-center">
+                <li className="mr-auto text-4xl font-mono font-bold">
                     <Link to="/">Tweetocracy</Link>
                 </li>
                 <li>
@@ -13,6 +13,9 @@ const Navbar = () => {
                 </li>
                 <li>
                     <Link to="/policies">Policies</Link>
+                </li>
+                <li>
+                    <Link to="/faq">FAQs</Link>
                 </li>
             </ul>
         </nav>
