@@ -2,6 +2,18 @@ import axios from "axios"
 import Sentiment from "sentiment"
 import { stopWords } from "../data/stopWords"
 
+export const fetchPolitician = async (id) => {
+    try {
+        const response = await axios.get(
+            `https://theyvoteforyou.org.au/api/v1/people/${id}.json?key=w2GqY%2FTxcwhegS1F4Iin`
+        )
+        return response.data
+    } catch (error) {
+        console.log(error)
+        return null
+    }
+}
+
 const sentiment = new Sentiment()
 
 export const calculateSentimentScore = (text) => {

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 
 const Navbar = () => {
     return (
-        <nav className="py-10 px-20">
+        <nav className="py-10 px-20 text-gray-800">
             <ul className="flex gap-20 items-center">
                 <li className="mr-auto text-4xl font-mono font-bold">
                     <Link to="/">Tweetocracy</Link>
