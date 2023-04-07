@@ -7,11 +7,11 @@ const app = express()
 app.use(cors())
 
 const twitterApiKeys = {
-    consumer_key: process.env.CONSUMER_KEY,
-    consumer_secret: process.env.CONSUMER_SECRET,
-    access_token_key: process.env.ACCESS_TOKEN_KEY,
-    access_token_secret: process.env.ACCESS_TOKEN_SECRET,
-    bearer_token: process.env.BEARER_TOKEN,
+    consumer_key: process.env.TWITTER_CONSUMER_KEY,
+    consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
+    access_token_key: process.env.TWITTER_ACCESS_TOKEN_KEY,
+    access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET,
+    bearer_token: process.env.TWITTER_BEARER_TOKEN,
 }
 
 const options = {
@@ -34,7 +34,7 @@ app.get("/api/tweets/:twitterId", async (req, res) => {
 
 const getUserTweets = async (url) => {
     const params = {
-        max_results: 30,
+        max_results: 40,
         "tweet.fields": "created_at,public_metrics,referenced_tweets",
         expansions: "author_id",
     }
