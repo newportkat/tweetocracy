@@ -1,7 +1,12 @@
-import React from "react";
+import React from "react"
+import Birds from "../assets/images/birds.png"
 
 const Home = () => {
-  return <div>Home</div>;
-};
+    return (
+        <div>
+            <img src={Birds} alt="birds" />{" "}
+        </div>
+    )
+}
 
-export default Home;
+export default Home
