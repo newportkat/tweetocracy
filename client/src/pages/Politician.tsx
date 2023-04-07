@@ -21,19 +21,13 @@ const Politician = () => {
     const [overallEngagement, setOverallEngagement] = useState(0)
     const [averageSentiment, setAverageSentiment] = useState(0)
 
-    const fetchPolitician = async (id) => {
-        try {
-            const response = await axios.get(
-                `https://theyvoteforyou.org.au/api/v1/people/${id}.json?key=w2GqY%2FTxcwhegS1F4Iin`
-            )
-            setPolitician(response.data)
-        } catch (error) {
-            console.log(error)
-        }
-    }
-
     useEffect(() => {
-        fetchPolitician(id)
+        const fetchAndSetPolitician = async () => {
+            const politicianData = await fetchPolitician(id)
+            setPolitician(politicianData)
+        }
+
+        fetchAndSetPolitician()
     }, [id])
 
     useEffect(() => {

@@ -4,6 +4,8 @@ import { Link } from "react-router-dom"
 
 const Policies = () => {
     const [policies, setPolicies] = useState([])
+    const [displayedPolicies, setDisplayedPolicies] = useState(20)
+    const [searchTerm, setSearchTerm] = useState("")
 
     const fetchPolicies = async () => {
         try {
@@ -18,16 +20,36 @@ const Policies = () => {
         }
     }
 
+    const handleSearchInputChange = (e) => {
+        setSearchTerm(e.target.value)
+    }
+
+    const loadMorePolicies = () => {
+        setDisplayedPolicies(displayedPolicies + 20)
+    }
+
     useEffect(() => {
         fetchPolicies()
     }, [])
 
+    const filteredPolicies = policies
+        .filter((policy) =>
+            policy.name.toLowerCase().includes(searchTerm.toLowerCase())
+        )
+        .slice(0, displayedPolicies)
+
     return (
         <div>
             <h2>List of Policies:</h2>
+            <input
+                type="text"
+                placeholder="Search for a policy"
+                value={searchTerm}
+                onChange={handleSearchInputChange}
+            />
             {policies.length > 0 ? (
                 <ul>
-                    {policies.map((policy) => (
+                    {filteredPolicies.map((policy) => (
                         <li key={policy.id} className="capitalize">
                             <Link to={`/policies/${policy.id}`}>
                                 {policy.name}
@@ -37,6 +59,9 @@ const Policies = () => {
                 </ul>
             ) : (
                 <p>Loading...</p>
+            )}
+            {displayedPolicies < policies.length && searchTerm === "" && (
+                <button onClick={loadMorePolicies}>Load more policies</button>
             )}
         </div>
     )
