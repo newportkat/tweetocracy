@@ -54,7 +54,7 @@ const getLatestTweets = async (url) => {
         max_results: 20,
         "tweet.fields": "created_at,public_metrics,referenced_tweets,text",
         expansions: "author_id",
-        query: "#auspol",
+        query: "#auspol -is:retweet",
     }
 
     const response = await needle("get", url, params, options)
