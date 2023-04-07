@@ -10,6 +10,7 @@ import Policies from "./pages/Policies"
 import Policy from "./pages/Policy"
 import Politician from "./pages/Politician"
 import VignetteOverlay from "./components/VignetteOverlay"
+import Faqs from "./pages/Faqs"
 
 const Layout = () => {
     return (
@@ -50,6 +51,10 @@ const router = createBrowserRouter([
             {
                 path: "/policies/:id",
                 element: <Policy />,
+            },
+            {
+                path: "/faqs",
+                element: <Faqs />,
             },
         ],
     },
