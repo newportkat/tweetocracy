@@ -1,7 +1,9 @@
 import axios from "axios"
 import React, { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import WordCloud from "react-wordcloud"
+import SentimentScore from "../components/SentimentScore"
+import Tweet from "../components/Tweet"
 import { stopWords } from "../data/stopWords"
 import { twitterData } from "../data/twitterData"
 import {
@@ -18,19 +20,6 @@ const Politician = () => {
     const [wordCloudData, setWordCloudData] = useState([])
     const [overallEngagement, setOverallEngagement] = useState(0)
     const [averageSentiment, setAverageSentiment] = useState(0)
-
-    const sentimentEmojis = [
-        "🤬",
-        "😠",
-        "😔",
-        "🙁",
-        "😐",
-        "🙂",
-        "😊",
-        "😄",
-        "😁",
-        "😍",
-    ]
 
     const fetchPolitician = async (id) => {
         try {
@@ -83,21 +72,28 @@ const Politician = () => {
         <div>
             {politician ? (
                 <div>
+                    <div>
+                        <Link
+                            to={`/parties/${
+                                politician.latest_member.party ===
+                                "Australian Labor Party"
+                                    ? "alp"
+                                    : "coalition"
+                            }`}
+                        >
+                            {politician.latest_member.party ===
+                            "Australian Labor Party"
+                                ? "Back to ALP Members"
+                                : "Back to Coalition Members"}
+                        </Link>
+                    </div>
                     <h1>{politician.latest_member.name.first}</h1>
                     <div>
                         <h2>Latest tweets:</h2>
                         {tweets.length > 0 ? (
                             <ul>
                                 {tweets.map((tweet) => (
-                                    <li key={tweet.id}>
-                                        <a
-                                            href={`https://twitter.com/i/web/status/${tweet.id}`}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                        >
-                                            {tweet.text}
-                                        </a>
-                                    </li>
+                                    <Tweet key={tweet.id} tweet={tweet} />
                                 ))}
                             </ul>
                         ) : (
@@ -110,11 +106,9 @@ const Politician = () => {
                     </div>
                     <div>
                         <h2>Average Sentiment Score:</h2>
-                        <p>
-                            {averageSentiment}
-                            {sentimentEmojis[Math.floor(averageSentiment) + 4]}
-                        </p>
+                        <SentimentScore score={Math.floor(averageSentiment)} />
                     </div>
+
                     <div>
                         <h2>Word Cloud:</h2>
                         {wordCloudData.length > 0 ? (
