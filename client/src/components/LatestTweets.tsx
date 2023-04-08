@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react"
 import axios from "axios"
+import HashtagTweet from "./HashtagTweet"
 
 const LatestTweets = () => {
     const [tweets, setTweets] = useState([])
@@ -22,8 +23,8 @@ return (
     <div>
         <h1>Latest Tweets with #auspol</h1>
         <ul>
-            {tweets.map((tweet: any) => (
-                <li key={tweet.id}>{tweet.text}</li>
+            {tweets.map((tweet) => (
+                <HashtagTweet key={tweet.id} tweet={tweet} />
             ))}
         </ul>
     </div>

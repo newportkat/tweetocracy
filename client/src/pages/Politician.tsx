@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react"
 import { Link, useParams } from "react-router-dom"
 import WordCloud from "react-wordcloud"
 import SentimentScore from "../components/SentimentScore"
-import Tweet from "../components/Tweet"
+import PoliticianTweet from "../components/PoliticianTweet"
 import { stopWords } from "../data/stopWords"
 import { twitterData } from "../data/twitterData"
 import {
@@ -87,7 +87,7 @@ const Politician = () => {
                         {tweets.length > 0 ? (
                             <ul>
                                 {tweets.map((tweet) => (
-                                    <Tweet key={tweet.id} tweet={tweet} />
+                                    <PoliticianTweet key={tweet.id} tweet={tweet} />
                                 ))}
                             </ul>
                         ) : (

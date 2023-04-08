@@ -1,6 +1,6 @@
 import React from "react"
 
-const Tweet = ({ tweet }) => {
+const PoliticianTweet = ({ tweet }) => {
     return (
         <li>
             <a
@@ -14,4 +14,4 @@ const Tweet = ({ tweet }) => {
     )
 }
 
-export default Tweet
+export default PoliticianTweet
