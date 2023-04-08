@@ -24,8 +24,7 @@ const options = {
 const getUserTweets = async (url) => {
     const params = {
         max_results: 40,
-        "tweet.fields": "created_at,public_metrics,referenced_tweets,text",
-        expansions: "author_id",
+        "tweet.fields": "created_at,public_metrics,text,author_id",
     }
 
     const response = await needle("get", url, params, options)
@@ -52,24 +51,59 @@ app.get("/api/tweets/:twitterId", async (req, res) => {
 const getLatestTweets = async (url) => {
     const params = {
         max_results: 10,
-        "tweet.fields": "created_at,public_metrics,referenced_tweets,text",
-        expansions: "author_id",
+        "tweet.fields": "created_at,public_metrics,text,author_id",
         query: "#auspol -is:retweet",
     }
 
     const response = await needle("get", url, params, options)
+
     console.log("Twitter API response:", response)
+
     if (response.statusCode !== 200) {
         throw new Error(
             `${response.statusCode} ${response.statusMessage}:\n${response.body}`
         )
     }
 
-    return response.body.data || [] // Use response.body.data instead of response.body.statuses
+    const tweets = response.body.data || []
+
+    // Collect unique author IDs from tweets
+    const authorIds = Array.from(new Set(tweets.map((t) => t.author_id)))
+
+    // Fetch user data for each author
+    const usersResponse = await needle(
+        "get",
+        `https://api.twitter.com/2/users?ids=${authorIds.join(
+            ","
+        )}&user.fields=profile_image_url,username`,
+        options
+    )
+
+    if (usersResponse.statusCode !== 200) {
+        throw new Error(
+            `${usersResponse.statusCode} ${usersResponse.statusMessage}:\n${usersResponse.body}`
+        )
+    }
+
+    const users = usersResponse.body.data
+
+    // Map user data to tweets
+    const tweetsWithUserData = tweets.map((tweet) => {
+        const user = users.find((u) => u.id === tweet.author_id)
+        return {
+            ...tweet,
+            user: {
+                username: user.username,
+                profile_image_url: user.profile_image_url,
+            },
+        }
+    })
+
+    return tweetsWithUserData
 }
 
 app.get("/api/latestTweets", async (req, res) => {
-    const url = `https://api.twitter.com/2/tweets/search/recent?`
+    const url = `https://api.twitter.com/2/tweets/search/recent`
     try {
         const tweets = await getLatestTweets(url)
         console.log("Tweets fetched:", tweets)
@@ -78,9 +112,6 @@ app.get("/api/latestTweets", async (req, res) => {
         res.status(500).json({ error: error.message })
     }
 })
-
-
-
 
 const PORT = process.env.PORT || 3001
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`))
