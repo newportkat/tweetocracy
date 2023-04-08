@@ -57,8 +57,6 @@ const getLatestTweets = async (url) => {
 
     const response = await needle("get", url, params, options)
 
-    console.log("Twitter API response:", response)
-
     if (response.statusCode !== 200) {
         throw new Error(
             `${response.statusCode} ${response.statusMessage}:\n${response.body}`
@@ -106,7 +104,6 @@ app.get("/api/latestTweets", async (req, res) => {
     const url = `https://api.twitter.com/2/tweets/search/recent`
     try {
         const tweets = await getLatestTweets(url)
-        console.log("Tweets fetched:", tweets)
         res.json(tweets)
     } catch (error) {
         res.status(500).json({ error: error.message })
