@@ -100,7 +100,7 @@ const getLatestTweets = async (url) => {
     return tweetsWithUserData
 }
 
-app.get("/api/latestTweets", async (req, res) => {
+app.get("/api/latest", async (req, res) => {
     const url = `https://api.twitter.com/2/tweets/search/recent`
     try {
         const tweets = await getLatestTweets(url)
