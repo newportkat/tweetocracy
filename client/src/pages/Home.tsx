@@ -1,6 +1,7 @@
 import React from "react"
 import Birds from "../assets/images/birds.png"
 import LatestTweets from "../components/LatestTweets"
+import { Link } from "react-router-dom"
 
 const Home = () => {
     return (
@@ -16,9 +17,9 @@ const Home = () => {
                             In politics, the early bird might get the worm, but
                             the loudest bird gets the retweets.
                         </p>
-                        <button className="hidden w-48 items-center justify-center rounded border-2 border-white bg-gray-800 px-4 py-2 text-xs font-bold tracking-wider text-white lg:flex">
+                        <Link to="/parties" className="hidden w-48 items-center justify-center rounded border-2 border-white bg-gray-800 px-4 py-2 text-xs font-bold tracking-wider text-white lg:flex">
                             EXPLORE TWEETS
-                        </button>
+                        </Link>
                     </div>
                 </div>
             </main>
