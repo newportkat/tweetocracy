@@ -15,10 +15,12 @@ import Politician from "./pages/Politician"
 
 const Layout = () => {
     return (
-        <div>
+        <div className="flex min-h-screen flex-col">
             <Navbar />
             <Outlet />
-            <Footer />
+            <div className="flex flex-grow justify-center">
+                <Footer />
+            </div>
         </div>
     )
 }
