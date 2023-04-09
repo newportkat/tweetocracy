@@ -4,7 +4,7 @@ module.exports = {
         extend: {
             backgroundImage: {
                 vignette:
-                    "radial-gradient(circle at center, transparent, hsl(224, 76%, 15%, 0.3))",
+                    "radial-gradient(circle at center, transparent, hsl(224, 76%, 15%, 0.2))",
             },
         },
     },
