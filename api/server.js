@@ -50,7 +50,7 @@ app.get("/api/tweets/:twitterId", async (req, res) => {
 
 const getLatestTweets = async (url) => {
     const params = {
-        max_results: 10,
+        max_results: 12,
         "tweet.fields": "created_at,public_metrics,text,author_id",
         query: "#auspol -is:retweet",
     }
