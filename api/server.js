@@ -110,5 +110,26 @@ app.get("/api/latest", async (req, res) => {
     }
 })
 
+app.get("/api/authordata/:twitterId", async (req, res) => {
+    const twitterId = req.params.twitterId
+    const url = `https://api.twitter.com/2/users?ids=${twitterId}&user.fields=username,profile_image_url`
+
+    try {
+        const response = await needle("get", url, options)
+
+        if (response.statusCode !== 200) {
+            throw new Error(
+                `${response.statusCode} ${response.statusMessage}:\n${response.body}`
+            )
+        }
+
+        const user = response.body.data[0]
+
+        res.json(user)
+    } catch (error) {
+        res.status(500).json({ error: error.message })
+    }
+})
+
 const PORT = process.env.PORT || 3001
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`))

@@ -21,6 +21,7 @@ const Politician = () => {
     const [wordCloudData, setWordCloudData] = useState([])
     const [overallEngagement, setOverallEngagement] = useState(0)
     const [averageSentiment, setAverageSentiment] = useState(0)
+    const [politicianInfo, setPoliticianInfo] = useState(null)
 
     useEffect(() => {
         const fetchAndSetPolitician = async () => {
@@ -63,6 +64,29 @@ const Politician = () => {
         fetchTweets()
     }, [id])
 
+    useEffect(() => {
+        console.log(tweets)
+        if (tweets.length > 0) {
+            console.log(tweets[0].author_id)
+            const fetchPoliticianInfo = async () => {
+                try {
+                    const response = await axios.get(
+                        `http://localhost:3001/api/authordata/${tweets[0].author_id}`
+                    )
+                    setPoliticianInfo(response.data)
+                } catch (error) {
+                    console.log(error)
+                }
+            }
+            fetchPoliticianInfo()
+        }
+    }, [tweets])
+
+        
+        useEffect(() => {
+            console.log(politicianInfo)
+        }, [politicianInfo])
+
     return (
         <div>
             {politician ? (
@@ -96,14 +120,7 @@ const Politician = () => {
                             <Loader />
                         )}
                     </div>
-                    <div>
-                        <p className="w-full bg-gray-800 p-6 text-center tracking-widest text-white">
-                            TOTAL{" "}
-                            <span className="font-extrabold">ENGAGEMENT</span>{" "}
-                            SCORE:
-                        </p>
-                        <p>{overallEngagement.toFixed(0)}</p>
-                    </div>
+
                     <div>
                         <p className="w-full bg-gray-800 p-6 text-center tracking-widest text-white">
                             AVERAGE{" "}
@@ -131,7 +148,6 @@ const Politician = () => {
                                         spiral: "archimedean",
                                         padding: 5,
                                     }}
-                                    // size={[200, 400]}
                                     style={{
                                         backgroundColor: "#fff",
                                         borderRadius: "5px",
@@ -144,6 +160,16 @@ const Politician = () => {
                         ) : (
                             <Loader />
                         )}
+                    </div>
+                    <div>
+                        <p className="w-full bg-gray-800 p-6 text-center tracking-widest text-white">
+                            TOTAL{" "}
+                            <span className="font-extrabold">ENGAGEMENT</span>{" "}
+                            SCORE:
+                        </p>
+                        <p className="p-6 text-center text-3xl tracking-widest text-gray-800">
+                            {overallEngagement.toFixed(0)}
+                        </p>
                     </div>
                 </div>
             ) : (
