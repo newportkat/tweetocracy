@@ -20,22 +20,48 @@ const Party = () => {
     }, [id])
 
     return (
-        <main>
-            <h2>
-                {party} {id === "alp" ? "Cabinet" : "Shadow"} Ministers:
+        <main className="flex flex-col items-center">
+            <h2 className="w-full bg-gray-800 p-6 text-center tracking-widest text-white">
+                <span className="font-extrabold">{party}</span>{" "}
+                {id === "alp" ? "Cabinet" : "Shadow"} Ministers:
             </h2>
-            <ul>
+            <div className="flex flex-col items-center gap-4 p-8">
+                <p className="text-center leading-relaxed">
+                   Fetch the latest tweets of each party
+                    member with just one click.
+                </p>
+                <p className="text-center leading-relaxed">
+                    Analyze their tweets for{" "}
+                    <Link to="/faqs" className="font-semibold">
+                        engagement scores,
+                    </Link>{" "}
+                    <Link to="/faqs" className="font-semibold">
+                        sentiment analysis,
+                    </Link>{" "}
+                    and{" "}
+                    <Link to="/faqs" className="font-semibold">
+                        frequently used words.
+                    </Link>{" "}
+                </p>
+                <Link
+                    to="/parties"
+                    className="sm:mt-2 rounded border-2 border-white bg-gray-800 px-4 py-2 text-xs font-bold tracking-wider text-white"
+                >
+                    BACK TO PARTIES
+                </Link>
+            </div>
+            <div className="mb-10 flex flex-wrap justify-center gap-6 px-8">
                 {politicians.map((politician) => (
-                    <li key={politician.id}>
+                    <div key={politician.id}>
                         <Link to={`/politicians/${politician.id}`}>
                             <PoliticianCard
                                 name={`${politician.latest_member.name.first} ${politician.latest_member.name.last}`}
                                 electorate={politician.latest_member.electorate}
                             />
                         </Link>
-                    </li>
+                    </div>
                 ))}
-            </ul>
+            </div>
         </main>
     )
 }
