@@ -2,8 +2,9 @@ import axios from "axios"
 import React, { useEffect, useState } from "react"
 import { Link, useParams } from "react-router-dom"
 import WordCloud from "react-wordcloud"
-import SentimentScore from "../components/SentimentScore"
+import Loader from "../components/Loader"
 import PoliticianTweet from "../components/PoliticianTweet"
+import SentimentScore from "../components/SentimentScore"
 import { stopWords } from "../data/stopWords"
 import { twitterData } from "../data/twitterData"
 import {
@@ -66,54 +67,89 @@ const Politician = () => {
         <div>
             {politician ? (
                 <div>
-                    <div>
-                        <Link
-                            to={`/parties/${
-                                politician.latest_member.party ===
-                                "Australian Labor Party"
-                                    ? "alp"
-                                    : "coalition"
-                            }`}
-                        >
-                            {politician.latest_member.party ===
+                    <h1 className="w-full bg-gray-800 p-6 text-center tracking-widest text-white">{`${politician.latest_member.name.first} ${politician.latest_member.name.last}'s LATEST TWEETS:`}</h1>
+                    <Link
+                        to={`/parties/${
+                            politician.latest_member.party ===
                             "Australian Labor Party"
-                                ? "Back to ALP Members"
-                                : "Back to Coalition Members"}
-                        </Link>
-                    </div>
-                    <h1>{politician.latest_member.name.first}</h1>
+                                ? "alp"
+                                : "coalition"
+                        }`}
+                        className="rounded border-2 border-white bg-gray-800 px-4 py-2 text-xs font-bold tracking-wider text-white"
+                    >
+                        {politician.latest_member.party ===
+                        "Australian Labor Party"
+                            ? "Back to ALP Members"
+                            : "Back to Coalition Members"}
+                    </Link>
                     <div>
-                        <h2>Latest tweets:</h2>
                         {tweets.length > 0 ? (
                             <ul>
                                 {tweets.map((tweet) => (
-                                    <PoliticianTweet key={tweet.id} tweet={tweet} />
+                                    <PoliticianTweet
+                                        key={tweet.id}
+                                        tweet={tweet}
+                                    />
                                 ))}
                             </ul>
                         ) : (
-                            <p>Loading tweets...</p>
+                            <Loader />
                         )}
                     </div>
                     <div>
-                        <h2>Overall Engagement:</h2>
+                        <p className="w-full bg-gray-800 p-6 text-center tracking-widest text-white">
+                            TOTAL{" "}
+                            <span className="font-extrabold">ENGAGEMENT</span>{" "}
+                            SCORE:
+                        </p>
                         <p>{overallEngagement.toFixed(0)}</p>
                     </div>
                     <div>
-                        <h2>Average Sentiment Score:</h2>
+                        <p className="w-full bg-gray-800 p-6 text-center tracking-widest text-white">
+                            AVERAGE{" "}
+                            <span className="font-extrabold">SENTIMENT</span>{" "}
+                            SCORE:
+                        </p>
                         <SentimentScore score={Math.floor(averageSentiment)} />
                     </div>
 
                     <div>
-                        <h2>Word Cloud:</h2>
+                        <p className="w-full bg-gray-800 p-6 text-center font-extrabold tracking-widest text-white">
+                            WORDCLOUD:
+                        </p>
                         {wordCloudData.length > 0 ? (
-                            <WordCloud words={wordCloudData} />
+                            <div className="rounded bg-white p-4 shadow-xl">
+                                <WordCloud
+                                    words={wordCloudData}
+                                    options={{
+                                        fontSizes: [14, 64],
+                                        fontFamily: "Arial",
+                                        fontWeight: "bold",
+                                        rotations: 2,
+                                        rotationAngles: [-45, 0],
+                                        scale: "sqrt",
+                                        spiral: "archimedean",
+                                        padding: 5,
+                                    }}
+                                    // size={[200, 400]}
+                                    style={{
+                                        backgroundColor: "#fff",
+                                        borderRadius: "5px",
+                                        boxShadow:
+                                            "0 20px 25px -5px rgb(0 0 0 / 0.1),",
+                                        margin: "20px",
+                                    }}
+                                />
+                            </div>
                         ) : (
-                            <p>Loading word cloud...</p>
+                            <Loader />
                         )}
                     </div>
                 </div>
             ) : (
-                <p>Loading...</p>
+                <div className="flex items-center justify-center p-6">
+                    <Loader />
+                </div>
             )}
         </div>
     )

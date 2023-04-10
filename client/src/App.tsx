@@ -3,7 +3,6 @@ import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom"
 import Footer from "./components/Footer"
 import Navbar from "./components/Navbar"
 import VignetteOverlay from "./components/VignetteOverlay"
-import About from "./pages/About"
 import Error from "./pages/Error"
 import Faqs from "./pages/Faqs"
 import Home from "./pages/Home"
@@ -58,10 +57,6 @@ const router = createBrowserRouter([
             {
                 path: "/faqs",
                 element: <Faqs />,
-            },
-            {
-                path: "/about",
-                element: <About />,
             },
         ],
     },

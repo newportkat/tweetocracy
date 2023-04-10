@@ -1,26 +1,27 @@
 import React from "react"
 
 const SentimentScore = ({ score }) => {
-     const sentimentEmojis = [
-         "🤬",
-         "😠",
-         "😔",
-         "🙁",
-         "😐",
-         "🙂",
-         "😊",
-         "😄",
-         "😁",
-         "😍",
-     ]
-     
+    const sentimentEmojis = [
+        "🤬",
+        "😠",
+        "😔",
+        "🙁",
+        "😐",
+        "🙂",
+        "😊",
+        "😄",
+        "😁",
+        "😍",
+    ]
+    console.log(score)
+
     return (
-        <div style={{ display: "flex", justifyContent: "center" }}>
+        <div className="flex items-center justify-center">
             {sentimentEmojis.map((emoji, index) => (
                 <span
                     key={index}
                     style={{
-                        fontSize: score === index - 4 ? "2em" : "1em",
+                        fontSize: score === index - 4 ? "2.5em" : "1em",
                         margin: "0.5em",
                     }}
                 >

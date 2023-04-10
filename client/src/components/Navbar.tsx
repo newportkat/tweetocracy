@@ -10,9 +10,6 @@ const Navbar = () => {
                     <Link to="/">Tweetocracy</Link>
                 </li>
                 <li className="hidden sm:flex">
-                    <Link to="/about">About</Link>
-                </li>
-                <li className="hidden sm:flex">
                     <Link to="/parties">Parties</Link>
                 </li>
                 <li className="hidden sm:flex">
