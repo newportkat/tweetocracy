@@ -6,19 +6,24 @@ import { coalitionData } from "../data/coalitionData"
 
 const Party = () => {
     const { id } = useParams()
+    const [party, setParty] = useState("")
     const [politicians, setPoliticians] = useState([])
 
     useEffect(() => {
         if (id === "alp") {
             setPoliticians(alpData)
+            setParty("ALP")
         } else if (id === "coalition") {
             setPoliticians(coalitionData)
+            setParty("Coalition")
         }
     }, [id])
 
     return (
         <main>
-            <h2>List of {id} Ministers:</h2>
+            <h2>
+                {party} {id === "alp" ? "Cabinet" : "Shadow"} Ministers:
+            </h2>
             <ul>
                 {politicians.map((politician) => (
                     <li key={politician.id}>

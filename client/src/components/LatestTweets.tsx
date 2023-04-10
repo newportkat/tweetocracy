@@ -1,6 +1,7 @@
 import axios from "axios"
 import React, { useEffect, useRef, useState } from "react"
 import HashtagTweet from "./HashtagTweet"
+import Loader from "./Loader"
 
 const LatestTweets = () => {
     const [tweets, setTweets] = useState([])
@@ -57,10 +58,7 @@ const LatestTweets = () => {
                     ))}
                 </div>
             ) : (
-                    <div
-                        className="m-6 h-10 w-10 animate-spin rounded-full
-                    border-8 border-solid border-gray-800 border-t-transparent"
-                    ></div>
+            <Loader/>
             )}
             {tweets.length > 0 && (
                 <button
