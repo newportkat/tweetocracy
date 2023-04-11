@@ -81,10 +81,6 @@ const Politician = () => {
         }
     }, [tweets])
 
-    useEffect(() => {
-        console.log(politicianInfo)
-    }, [politicianInfo])
-
     return (
         <div>
             {politician && politicianInfo ? (
@@ -105,7 +101,7 @@ const Politician = () => {
                                 ? "alp"
                                 : "coalition"
                         }`}
-                        className="rounded border-2 border-white bg-gray-800 px-4 py-2 text-xs font-bold tracking-wider text-white m-8"
+                        className="m-8 rounded border-2 border-white bg-gray-800 px-4 py-2 text-xs font-bold tracking-wider text-white"
                     >
                         {politician.latest_member.party ===
                         "Australian Labor Party"
@@ -183,11 +179,16 @@ const Politician = () => {
                             {overallEngagement.toFixed(0)}
                         </p>
                     </div>
-
                 </div>
             ) : (
-                <div className="flex items-center justify-center p-6">
-                    <Loader />
+                <div>
+
+                <div className="bg-gray-800 p-6 text-center font-extrabold tracking-widest text-white w-full">
+                    <p>LOADING...</p>
+                </div>
+                    <div className="flex items-center justify-center p-6">
+                        <Loader />
+                    </div>
                 </div>
             )}
         </div>
