@@ -23,7 +23,7 @@ const options = {
 
 const getUserTweets = async (url) => {
     const params = {
-        max_results: 40,
+        max_results: 10,
         "tweet.fields": "created_at,public_metrics,text,author_id",
     }
 
@@ -105,6 +105,27 @@ app.get("/api/latest", async (req, res) => {
     try {
         const tweets = await getLatestTweets(url)
         res.json(tweets)
+    } catch (error) {
+        res.status(500).json({ error: error.message })
+    }
+})
+
+app.get("/api/authordata/:twitterId", async (req, res) => {
+    const twitterId = req.params.twitterId
+    const url = `https://api.twitter.com/2/users?ids=${twitterId}&user.fields=username,profile_image_url`
+
+    try {
+        const response = await needle("get", url, options)
+
+        if (response.statusCode !== 200) {
+            throw new Error(
+                `${response.statusCode} ${response.statusMessage}:\n${response.body}`
+            )
+        }
+
+        const user = response.body.data[0]
+
+        res.json(user)
     } catch (error) {
         res.status(500).json({ error: error.message })
     }

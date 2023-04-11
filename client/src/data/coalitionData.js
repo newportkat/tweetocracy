@@ -56,20 +56,6 @@ export const coalitionData = [
         twitterId: "2899264434",
     },
     {
-        id: 10888,
-        latest_member: {
-            id: 714,
-            name: {
-                first: "Julian",
-                last: "Leeser",
-            },
-            electorate: "Berowra",
-            house: "representatives",
-            party: "Liberal Party",
-        },
-        twitterId: "2594661042",
-    },
-    {
         id: 10951,
         latest_member: {
             id: 100911,
