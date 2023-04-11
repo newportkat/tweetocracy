@@ -67,7 +67,6 @@ const Politician = () => {
     useEffect(() => {
         console.log(tweets)
         if (tweets.length > 0) {
-            console.log(tweets[0].author_id)
             const fetchPoliticianInfo = async () => {
                 try {
                     const response = await axios.get(
@@ -82,16 +81,23 @@ const Politician = () => {
         }
     }, [tweets])
 
-        
-        useEffect(() => {
-            console.log(politicianInfo)
-        }, [politicianInfo])
+    useEffect(() => {
+        console.log(politicianInfo)
+    }, [politicianInfo])
 
     return (
         <div>
-            {politician ? (
-                <div>
-                    <h1 className="w-full bg-gray-800 p-6 text-center tracking-widest text-white">{`${politician.latest_member.name.first} ${politician.latest_member.name.last}'s LATEST TWEETS:`}</h1>
+            {politician && politicianInfo ? (
+                <div className="flex flex-col items-center">
+                    <h1 className="w-full bg-gray-800 p-6 text-center uppercase tracking-widest text-white">
+                        LATEST TWEETS FROM{" "}
+                        <span className="font-extrabold">
+                            {politician.latest_member.name.first}{" "}
+                            {politician.latest_member.name.last}
+                        </span>
+                        :
+                    </h1>
+
                     <Link
                         to={`/parties/${
                             politician.latest_member.party ===
@@ -99,29 +105,66 @@ const Politician = () => {
                                 ? "alp"
                                 : "coalition"
                         }`}
-                        className="rounded border-2 border-white bg-gray-800 px-4 py-2 text-xs font-bold tracking-wider text-white"
+                        className="rounded border-2 border-white bg-gray-800 px-4 py-2 text-xs font-bold tracking-wider text-white m-8"
                     >
                         {politician.latest_member.party ===
                         "Australian Labor Party"
                             ? "Back to ALP Members"
                             : "Back to Coalition Members"}
                     </Link>
-                    <div>
+                    <div className="px-8 pb-8">
                         {tweets.length > 0 ? (
-                            <ul>
+                            <div className="flex flex-col items-center justify-center gap-6 sm:flex-row sm:flex-wrap">
                                 {tweets.map((tweet) => (
                                     <PoliticianTweet
                                         key={tweet.id}
                                         tweet={tweet}
+                                        username={politicianInfo.username}
+                                        profilePic={
+                                            politicianInfo.profile_image_url
+                                        }
                                     />
                                 ))}
-                            </ul>
+                            </div>
                         ) : (
                             <Loader />
                         )}
                     </div>
 
-                    <div>
+                    <div className="w-full">
+                        <p className="bg-gray-800 p-6 text-center font-extrabold tracking-widest text-white">
+                            WORDCLOUD:
+                        </p>
+                        {wordCloudData.length > 0 ? (
+                            <div>
+                                <WordCloud
+                                    words={wordCloudData}
+                                    options={{
+                                        fontSizes: [14, 68],
+                                        fontFamily: "Arial",
+                                        fontWeight: "bold",
+                                        rotations: 2,
+                                        rotationAngles: [-45, 0],
+                                        scale: "sqrt",
+                                        spiral: "archimedean",
+                                        padding: 4,
+                                    }}
+                                    style={{
+                                        backgroundColor: "#fff",
+                                        borderRadius: "5px",
+                                        boxShadow:
+                                            "0 20px 25px -5px rgb(0 0 0 / 0.4)",
+                                        margin: "2.5em",
+                                        padding: ".5em",
+                                    }}
+                                />
+                            </div>
+                        ) : (
+                            <Loader />
+                        )}
+                    </div>
+
+                    <div className="w-full">
                         <p className="w-full bg-gray-800 p-6 text-center tracking-widest text-white">
                             AVERAGE{" "}
                             <span className="font-extrabold">SENTIMENT</span>{" "}
@@ -130,39 +173,8 @@ const Politician = () => {
                         <SentimentScore score={Math.floor(averageSentiment)} />
                     </div>
 
-                    <div>
-                        <p className="w-full bg-gray-800 p-6 text-center font-extrabold tracking-widest text-white">
-                            WORDCLOUD:
-                        </p>
-                        {wordCloudData.length > 0 ? (
-                            <div className="rounded bg-white p-4 shadow-xl">
-                                <WordCloud
-                                    words={wordCloudData}
-                                    options={{
-                                        fontSizes: [14, 64],
-                                        fontFamily: "Arial",
-                                        fontWeight: "bold",
-                                        rotations: 2,
-                                        rotationAngles: [-45, 0],
-                                        scale: "sqrt",
-                                        spiral: "archimedean",
-                                        padding: 5,
-                                    }}
-                                    style={{
-                                        backgroundColor: "#fff",
-                                        borderRadius: "5px",
-                                        boxShadow:
-                                            "0 20px 25px -5px rgb(0 0 0 / 0.1),",
-                                        margin: "20px",
-                                    }}
-                                />
-                            </div>
-                        ) : (
-                            <Loader />
-                        )}
-                    </div>
-                    <div>
-                        <p className="w-full bg-gray-800 p-6 text-center tracking-widest text-white">
+                    <div className="w-full">
+                        <p className="bg-gray-800 p-6 text-center tracking-widest text-white">
                             TOTAL{" "}
                             <span className="font-extrabold">ENGAGEMENT</span>{" "}
                             SCORE:
@@ -171,6 +183,7 @@ const Politician = () => {
                             {overallEngagement.toFixed(0)}
                         </p>
                     </div>
+
                 </div>
             ) : (
                 <div className="flex items-center justify-center p-6">
