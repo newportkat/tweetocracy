@@ -182,10 +182,9 @@ const Politician = () => {
                 </div>
             ) : (
                 <div>
-
-                <div className="bg-gray-800 p-6 text-center font-extrabold tracking-widest text-white w-full">
-                    <p>LOADING...</p>
-                </div>
+                    <div className="w-full bg-gray-800 p-6 text-center font-extrabold tracking-widest text-white">
+                        <p>LOADING...</p>
+                    </div>
                     <div className="flex items-center justify-center p-6">
                         <Loader />
                     </div>

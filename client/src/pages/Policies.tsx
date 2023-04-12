@@ -1,6 +1,7 @@
 import axios from "axios"
 import React, { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
+import Loader from "../components/Loader"
 
 const Policies = () => {
     const [policies, setPolicies] = useState([])
@@ -39,18 +40,36 @@ const Policies = () => {
         .slice(0, displayedPolicies)
 
     return (
-        <div>
-            <h2>List of Policies:</h2>
-            <input
-                type="text"
-                placeholder="Search for a policy"
-                value={searchTerm}
-                onChange={handleSearchInputChange}
-            />
+        <div className="flex flex-col">
+            <h1 className="w-full bg-gray-800 p-6 text-center font-extrabold tracking-widest text-white">
+                POLICIES
+            </h1>
+            <div className="flex flex-col gap-4 p-6 lg:text-center">
+                <p className="text-center text-xl font-bold lg:text-2xl">
+                    Knowledge is power
+                </p>
+                <p>
+                    Browse our comprehensive list of policies voted on in the
+                    Australian Parliament, and easily find the ones that matter
+                    most to you.
+                </p>
+                <p>
+                    See which MPs voted for or against a policy and get a clear
+                    picture of where our elected officials stand on the issues
+                    that shape our nation.
+                </p>
+                <input
+                    type="text"
+                    placeholder="Search for a policy"
+                    value={searchTerm}
+                    onChange={handleSearchInputChange}
+                    className="bg-white p-2 shadow-xl lg:text-center"
+                />
+            </div>
             {policies.length > 0 ? (
-                <ul>
+                <ul className="mb-6 grid grid-cols-1 gap-4 px-6 lg:grid-cols-2 xl:my-6 xl:grid-cols-3">
                     {filteredPolicies.map((policy) => (
-                        <li key={policy.id} className="capitalize">
+                        <li key={policy.id} className="font-medium capitalize">
                             <Link to={`/policies/${policy.id}`}>
                                 {policy.name}
                             </Link>
@@ -58,10 +77,17 @@ const Policies = () => {
                     ))}
                 </ul>
             ) : (
-                <p>Loading...</p>
+                <div className="flex items-center justify-center">
+                    <Loader />
+                </div>
             )}
             {displayedPolicies < policies.length && searchTerm === "" && (
-                <button onClick={loadMorePolicies}>Load more policies</button>
+                <button
+                    onClick={loadMorePolicies}
+                    className="m-6 self-center rounded border-2 border-white bg-gray-800 px-4 py-2 text-xs font-bold tracking-wider text-white"
+                >
+                    LOAD MORE
+                </button>
             )}
         </div>
     )
