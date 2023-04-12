@@ -58,15 +58,15 @@ const Navbar = ({ showMobileMenu, toggleMenu }) => {
                 </li>
                 <li className="group relative hidden font-medium sm:flex">
                     <Link to="/parties">Parties</Link>
-                    <span className="absolute -bottom-1 left-0 h-1 w-0 bg-gray-800 transition-all group-hover:w-full"></span>
+                    <span className="absolute -bottom-1 left-0 h-[.12em] w-0 bg-gray-800 transition-all group-hover:w-full"></span>
                 </li>
                 <li className="group relative hidden font-medium sm:flex">
                     <Link to="/policies">Policies</Link>
-                    <span className="absolute -bottom-1 left-0 h-1 w-0 bg-gray-800 transition-all group-hover:w-full"></span>
+                    <span className="absolute -bottom-1 left-0 h-[.12em] w-0 bg-gray-800 transition-all group-hover:w-full"></span>
                 </li>
                 <li className="group relative hidden font-medium sm:flex">
                     <Link to="/faqs">FAQs</Link>
-                    <span className="absolute -bottom-1 left-0 h-1 w-0 bg-gray-800 transition-all group-hover:w-full"></span>
+                    <span className="absolute -bottom-1 left-0 h-[.12em] w-0 bg-gray-800 transition-all group-hover:w-full"></span>
                 </li>
             </ul>
             <div onClick={toggleMenu}>

@@ -63,7 +63,7 @@ const LatestTweets = () => {
             {tweets.length > 0 && (
                 <button
                     onClick={refreshTweets}
-                    className="m-6 rounded border-2 border-white bg-gray-800 px-4 py-2 text-xs font-bold tracking-wider text-white"
+                    className="m-6 rounded border-2 border-white bg-gray-800 px-4 py-2 text-xs font-bold tracking-wider text-white hover:bg-gray-600"
                 >
                     REFRESH LATEST TWEETS
                 </button>
