@@ -1,6 +1,6 @@
 import React from "react"
 
-const MobileMenu = (props) => {
+const HamburgerMenu = (props) => {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -20,4 +20,4 @@ const MobileMenu = (props) => {
     )
 }
 
-export default MobileMenu
+export default HamburgerMenu
