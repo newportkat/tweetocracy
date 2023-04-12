@@ -40,12 +40,12 @@ const Policies = () => {
         .slice(0, displayedPolicies)
 
     return (
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center justify-center">
             <h1 className="w-full bg-gray-800 p-6 text-center font-extrabold tracking-widest text-white">
                 POLICIES
             </h1>
-            <div className="flex flex-col gap-4 p-6 lg:text-center lg:max-w-3xl justify-center">
-                <p className="tracking-wide text-center text-xl font-bold lg:text-2xl">
+            <div className="flex flex-col justify-center gap-4 p-6 lg:max-w-3xl lg:text-center">
+                <p className="text-center text-xl font-bold tracking-wide lg:text-2xl">
                     Informed citizens,
                     <br /> powerful democracy.
                 </p>
@@ -68,7 +68,7 @@ const Policies = () => {
                 />
             </div>
             {policies.length > 0 ? (
-                <ul className="mb-6 grid grid-cols-1 gap-4 px-6 lg:grid-cols-2 xl:my-6 xl:grid-cols-3">
+                <ul className="mb-6 grid grid-cols-1 gap-4 lg:grid-cols-2 xl:my-6 xl:grid-cols-3 xl:px-20">
                     {filteredPolicies.map((policy) => (
                         <li key={policy.id} className="font-medium capitalize">
                             <Link to={`/policies/${policy.id}`}>

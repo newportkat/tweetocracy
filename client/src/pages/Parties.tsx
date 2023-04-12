@@ -37,13 +37,13 @@ const Parties = () => {
                 <div className="flex flex-col gap-2">
                     <Link
                         to="/parties/alp"
-                        className="xl:text-xl items-center justify-center rounded border-2 border-white bg-red-800 px-4 py-2 text-center text-xs font-bold tracking-wider text-white"
+                        className="hover:bg-red-800 xl:text-xl items-center justify-center rounded border-2 border-white bg-red-600 px-4 py-2 text-center text-xs font-bold tracking-wider text-white"
                     >
                         Australian Labor Party
                     </Link>
                     <Link
                         to="/parties/coalition"
-                        className="xl:text-xl items-center justify-center rounded border-2 border-white bg-blue-800 px-4 py-2 text-center text-xs font-bold tracking-wider text-white"
+                        className="hover:bg-blue-800 xl:text-xl items-center justify-center rounded border-2 border-white bg-blue-600 px-4 py-2 text-center text-xs font-bold tracking-wider text-white"
                     >
                         Liberal–National Coalition
                     </Link>

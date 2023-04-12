@@ -70,11 +70,11 @@ const Policy = () => {
                     <div className="flex flex-col items-center p-4">
                         <Link
                             to="/policies"
-                            className="rounded border-2 border-white bg-gray-800 px-4 py-2 text-xs font-bold tracking-wider text-white"
+                            className="rounded border-2 border-white bg-gray-800 px-4 py-2 text-xs font-bold tracking-wider text-white hover:bg-gray-600"
                         >
                             BACK TO POLICIES
                         </Link>
-                        <p className="p-4 leading-loose max-w-5xl">
+                        <p className="max-w-5xl p-4 leading-loose">
                             {policy.description.charAt(0).toUpperCase() +
                                 policy.description.slice(1)}
                             .
@@ -97,7 +97,7 @@ const Policy = () => {
                             </select>
                         </div>
                     </div>
-                    <div className="flex flex-wrap items-center justify-center gap-4 p-4 mb-4 lg:px-8">
+                    <div className="mb-4 flex flex-wrap items-center justify-center gap-4 p-4 lg:px-8">
                         {filteredVoters.map((voter) => (
                             <VoterCard
                                 key={voter.person.id}

@@ -17,7 +17,7 @@ const Home = () => {
                             In politics, the early bird might get the worm, but
                             the loudest bird gets the retweets.
                         </p>
-                        <Link to="/parties" className="hidden w-48 items-center justify-center rounded border-2 border-white bg-gray-800 px-4 py-2 text-xs font-bold tracking-wider text-white lg:flex">
+                        <Link to="/parties" className="hidden w-48 items-center justify-center rounded border-2 border-white bg-gray-800 px-4 py-2 text-xs font-bold tracking-wider text-white lg:flex hover:bg-gray-600">
                             EXPLORE TWEETS
                         </Link>
                     </div>

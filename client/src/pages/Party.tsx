@@ -45,7 +45,7 @@ const Party = () => {
                 </p>
                 <Link
                     to="/parties"
-                    className="sm:mt-2 rounded border-2 border-white bg-gray-800 px-4 py-2 text-xs font-bold tracking-wider text-white"
+                    className="hover:bg-gray-600 sm:mt-2 rounded border-2 border-white bg-gray-800 px-4 py-2 text-xs font-bold tracking-wider text-white"
                 >
                     BACK TO PARTIES
                 </Link>
