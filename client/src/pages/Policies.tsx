@@ -46,7 +46,7 @@ const Policies = () => {
             </h1>
             <div className="flex flex-col gap-4 p-6 lg:text-center">
                 <p className="text-center text-xl font-bold lg:text-2xl">
-                    Knowledge is power
+                    Informed citizens, powerful democracy.
                 </p>
                 <p>
                     Browse our comprehensive list of policies voted on in the
