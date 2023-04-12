@@ -23,7 +23,7 @@ const options = {
 
 const getUserTweets = async (url) => {
     const params = {
-        max_results: 10,
+        max_results: 30,
         "tweet.fields": "created_at,public_metrics,text,author_id",
     }
 
