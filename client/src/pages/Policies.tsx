@@ -40,13 +40,14 @@ const Policies = () => {
         .slice(0, displayedPolicies)
 
     return (
-        <div className="flex flex-col">
+        <div className="flex flex-col items-center">
             <h1 className="w-full bg-gray-800 p-6 text-center font-extrabold tracking-widest text-white">
                 POLICIES
             </h1>
-            <div className="flex flex-col gap-4 p-6 lg:text-center">
-                <p className="text-center text-xl font-bold lg:text-2xl">
-                    Informed citizens, powerful democracy.
+            <div className="flex flex-col gap-4 p-6 lg:text-center lg:max-w-3xl justify-center">
+                <p className="tracking-wide text-center text-xl font-bold lg:text-2xl">
+                    Informed citizens,
+                    <br /> powerful democracy.
                 </p>
                 <p>
                     Browse our comprehensive list of policies voted on in the
