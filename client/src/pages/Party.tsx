@@ -23,7 +23,7 @@ const Party = () => {
         <main className="flex flex-col items-center">
             <h2 className="w-full bg-gray-800 p-6 text-center tracking-widest text-white">
                 <span className="font-extrabold">{party}</span>{" "}
-                {id === "alp" ? "Cabinet" : "Shadow"} Ministers:
+                {id === "alp" ? "Cabinet" : "Shadow"} Ministers
             </h2>
             <div className="flex flex-col items-center gap-4 p-8">
                 <p className="text-center leading-relaxed">

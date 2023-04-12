@@ -1,5 +1,6 @@
 import React, { useState } from "react"
-import { faqList } from "../data/faqList"
+import Down from "../assets/svgFunctions/Down"
+import Up from "../assets/svgFunctions/Up"
 
 const Faqs = () => {
     const [activeIndex, setActiveIndex] = useState(null)
@@ -12,56 +13,76 @@ const Faqs = () => {
         }
     }
 
-    const renderedFaqList = faqList.map((faq, index) => {
-        const active = index === activeIndex ? "block" : "hidden"
-
-        return (
-            <div className="border-b py-4" key={index}>
-                <div
-                    className="flex cursor-pointer items-center justify-between"
-                    onClick={() => onQuestionClick(index)}
-                >
-                    <h3 className="text-lg font-medium">{faq.question}</h3>
-                    <span className="ml-2">
-                        {active === "block" ? (
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="h-6 w-6"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor"
-                            >
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth={2}
-                                    d="M6 18L18 6M6 6l12 12"
-                                />
-                            </svg>
+    return (
+        <div>
+            <p className="w-full bg-gray-800 p-6 text-center font-extrabold tracking-widest text-white">
+                FAQs
+            </p>
+            <div>
+                <div className="border-b">
+                    <div
+                        className="flex cursor-pointer items-center justify-between"
+                        onClick={() => onQuestionClick(0)}
+                    >
+                        <h3 className="text-lg font-medium">Question 1</h3>
+                        {activeIndex === 0 ? (
+                            <Up className="h-6 w-6" />
                         ) : (
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="h-6 w-6"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor"
-                            >
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth={2}
-                                    d="M4 6h16M4 12h16M4 18h16"
-                                />
-                            </svg>
+                            <Down className="h-6 w-6" />
                         )}
-                    </span>
+                    </div>
+                    <p
+                        className={`mt-2 leading-relaxed ${
+                            activeIndex === 0 ? "flex" : "hidden"
+                        }`}
+                    >
+                        Answer 1
+                    </p>
                 </div>
-                <p className={`mt-2 leading-relaxed ${active}`}>{faq.answer}</p>
-            </div>
-        )
-    })
+                <div className="border-b">
+                    <div
+                        className="flex cursor-pointer items-center justify-between"
+                        onClick={() => onQuestionClick(1)}
+                    >
+                        <h3 className="text-lg font-medium">Question 2</h3>
+                        {activeIndex === 1 ? (
+                            <Up className="h-6 w-6" />
+                        ) : (
+                            <Down className="h-6 w-6" />
+                        )}
+                    </div>
+                    <p
+                        className={`mt-2 leading-relaxed ${
+                            activeIndex === 1 ? "flex" : "hidden"
+                        }`}
+                    >
+                        Answer 2
+                    </p>
+                </div>
 
-    return <div className="faq-list">{renderedFaqList}</div>
+                <div className="border-b">
+                    <div
+                        className="flex cursor-pointer items-center justify-between"
+                        onClick={() => onQuestionClick(2)}
+                    >
+                        <h3 className="text-lg font-medium">Question 3</h3>
+                        {activeIndex === 2 ? (
+                            <Up className="h-6 w-6" />
+                        ) : (
+                            <Down className="h-6 w-6" />
+                        )}
+                    </div>
+                    <p
+                        className={`mt-2 leading-relaxed ${
+                            activeIndex === 2 ? "flex" : "hidden"
+                        }`}
+                    >
+                        Answer 3
+                    </p>
+                </div>
+            </div>
+        </div>
+    )
 }
 
 export default Faqs
