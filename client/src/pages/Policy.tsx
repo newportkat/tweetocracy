@@ -74,7 +74,7 @@ const Policy = () => {
                         >
                             BACK TO POLICIES
                         </Link>
-                        <p className="p-4 leading-relaxed">
+                        <p className="p-4 leading-loose max-w-5xl">
                             {policy.description.charAt(0).toUpperCase() +
                                 policy.description.slice(1)}
                             .
