@@ -18,13 +18,15 @@ const Faqs = () => {
             <p className="w-full bg-gray-800 p-6 text-center font-extrabold tracking-widest text-white">
                 FAQs
             </p>
-            <div>
+            <div className="flex flex-col items-center justify-center gap-8 p-8">
                 <div className="border-b">
                     <div
-                        className="flex cursor-pointer items-center justify-between"
+                        className="flex cursor-pointer items-center justify-center gap-4"
                         onClick={() => onQuestionClick(0)}
                     >
-                        <h3 className="text-lg font-medium">Question 1</h3>
+                        <h3 className="text-lg font-medium">
+                            Where does your data come from?
+                        </h3>
                         {activeIndex === 0 ? (
                             <Up className="h-6 w-6" />
                         ) : (
@@ -32,19 +34,28 @@ const Faqs = () => {
                         )}
                     </div>
                     <p
-                        className={`mt-2 leading-relaxed ${
+                        className={`mt-4 max-w-5xl leading-9 ${
                             activeIndex === 0 ? "flex" : "hidden"
                         }`}
                     >
-                        Answer 1
+                        We source our data from two different APIs. For tweets,
+                        we use the Twitter API to fetch the latest tweets from
+                        Australian politicians. For data about politicians and
+                        policies, we use the They Vote For You API, which can be
+                        found at https://theyvoteforyou.org.au/. This allows us
+                        to provide up-to-date and accurate information about
+                        politicians and their voting history, as well as the
+                        latest tweets from their official Twitter accounts.
                     </p>
                 </div>
                 <div className="border-b">
                     <div
-                        className="flex cursor-pointer items-center justify-between"
+                        className="flex cursor-pointer items-center justify-center gap-4"
                         onClick={() => onQuestionClick(1)}
                     >
-                        <h3 className="text-lg font-medium">Question 2</h3>
+                        <h3 className="text-lg font-medium">
+                            What is the average sentiment score?
+                        </h3>
                         {activeIndex === 1 ? (
                             <Up className="h-6 w-6" />
                         ) : (
@@ -52,20 +63,30 @@ const Faqs = () => {
                         )}
                     </div>
                     <p
-                        className={`mt-2 leading-relaxed ${
+                        className={`mt-4 max-w-5xl leading-9 ${
                             activeIndex === 1 ? "flex" : "hidden"
                         }`}
                     >
-                        Answer 2
+                        The average sentiment score is a numerical
+                        representation of the overall sentiment of a
+                        politician's tweets. We analyze each tweet for
+                        sentiment, which ranges from -5 to +5. A score of -5
+                        represents extremely negative sentiment, while a score
+                        of +5 represents extremely positive sentiment. A score
+                        of 0 represents neutral sentiment. We calculate the
+                        average score across all of the politician's tweets to
+                        provide insight into their general emotional tone.
                     </p>
                 </div>
 
                 <div className="border-b">
                     <div
-                        className="flex cursor-pointer items-center justify-between"
+                        className="flex cursor-pointer items-center justify-center gap-4"
                         onClick={() => onQuestionClick(2)}
                     >
-                        <h3 className="text-lg font-medium">Question 3</h3>
+                        <h3 className="text-lg font-medium">
+                            What is the engagement score?
+                        </h3>
                         {activeIndex === 2 ? (
                             <Up className="h-6 w-6" />
                         ) : (
@@ -73,11 +94,73 @@ const Faqs = () => {
                         )}
                     </div>
                     <p
-                        className={`mt-2 leading-relaxed ${
+                        className={`mt-4 max-w-5xl leading-9 ${
                             activeIndex === 2 ? "flex" : "hidden"
                         }`}
                     >
-                        Answer 3
+                        The engagement score is a measure of the interaction
+                        that a politician's tweets receive. We take into account
+                        the number of likes, retweets, and replies to calculate
+                        a score that reflects their overall engagement on
+                        Twitter. The score is calculated by assigning weights to
+                        each type of engagement: likes have a weight of 1,
+                        retweets have a weight of 2, and replies have a weight
+                        of 3. The total engagement score provides an indication
+                        of how successful a politician is in using social media
+                        to communicate their message and engage with their
+                        audience.
+                    </p>
+                </div>
+                <div className="border-b">
+                    <div
+                        className="flex cursor-pointer items-center justify-center gap-4"
+                        onClick={() => onQuestionClick(3)}
+                    >
+                        <h3 className="text-lg font-medium">
+                            What does the word cloud represent?
+                        </h3>
+                        {activeIndex === 3 ? (
+                            <Up className="h-6 w-6" />
+                        ) : (
+                            <Down className="h-6 w-6" />
+                        )}
+                    </div>
+                    <p
+                        className={`mt-4 max-w-5xl leading-9 ${
+                            activeIndex === 3 ? "flex" : "hidden"
+                        }`}
+                    >
+                        The word cloud represents the most frequently used words
+                        in a politician's tweets. It provides insight into the
+                        topics that they frequently discuss and the language
+                        that they use to communicate their message. We remove
+                        common stop words to focus on the most meaningful words
+                        in their tweets.
+                    </p>
+                </div>
+                <div className="border-b">
+                    <div
+                        className="flex cursor-pointer items-center justify-center gap-4"
+                        onClick={() => onQuestionClick(4)}
+                    >
+                        <h3 className="text-lg font-medium">
+                            Where does your artwork come from?
+                        </h3>
+                        {activeIndex === 4 ? (
+                            <Up className="h-6 w-6" />
+                        ) : (
+                            <Down className="h-6 w-6" />
+                        )}
+                    </div>
+                    <p
+                        className={`mt-4 max-w-5xl leading-9 ${
+                            activeIndex === 4 ? "flex" : "hidden"
+                        }`}
+                    >
+                        The artwork on our website is created using midjourney,
+                        a digital design tool. We use midjourney to create the
+                        initial designs, which are then edited to fit our
+                        specific needs and style.
                     </p>
                 </div>
             </div>
