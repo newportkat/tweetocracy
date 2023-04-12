@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom"
 import Footer from "./components/Footer"
 import Navbar from "./components/Navbar"
@@ -13,16 +13,37 @@ import Policy from "./pages/Policy"
 import Politician from "./pages/Politician"
 
 const Layout = () => {
+    const [showMobileMenu, setShowMobileMenu] = useState(false)
+
+    const scrollUp = () => {
+        window.scrollTo(0, 0)
+    }
+    const toggleMenu = () => {
+        setShowMobileMenu((prev) => !prev)
+        scrollUp()
+    }
+
+    //disable scrolling
+    if (showMobileMenu) {
+        document.body.style.overflow = "hidden"
+    } else {
+        document.body.style.overflow = "visible"
+    }
+
     return (
-        <div className="flex min-h-screen flex-col">
-            <Navbar />
-            <Outlet />
-            <div className="flex flex-grow justify-center">
-                <Footer />
+        <div className="relative flex min-h-screen flex-col">
+            <Navbar showMobileMenu={showMobileMenu} toggleMenu={toggleMenu} />
+            <div className={`relative flex flex-grow flex-col justify-center`}>
+                {showMobileMenu && (
+                    <div className="absolute inset-0 z-10 bg-black opacity-80"></div>
+                )}
+                <Outlet />
+            <Footer />
             </div>
         </div>
     )
 }
+
 
 const router = createBrowserRouter([
     {
