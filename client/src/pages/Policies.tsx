@@ -11,9 +11,7 @@ const Policies = () => {
     const fetchPolicies = async () => {
         try {
             const response = await axios.get(
-                `https://theyvoteforyou.org.au/api/v1/policies.json?key=${
-                    import.meta.env.VITE_THEY_VOTE_FOR_YOU_API_KEY
-                }`
+                "http://localhost:3001/api/policies"
             )
             setPolicies(response.data)
         } catch (error) {
@@ -68,7 +66,7 @@ const Policies = () => {
                 />
             </div>
             {policies.length > 0 ? (
-                <ul className="mb-6 px-6 grid grid-cols-1 gap-4 lg:grid-cols-2 xl:my-6 xl:grid-cols-3 xl:px-20">
+                <ul className="mb-6 grid grid-cols-1 gap-4 px-6 lg:grid-cols-2 xl:my-6 xl:grid-cols-3 xl:px-20">
                     {filteredPolicies.map((policy) => (
                         <li key={policy.id} className="font-medium capitalize">
                             <Link to={`/policies/${policy.id}`}>

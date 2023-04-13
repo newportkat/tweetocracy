@@ -12,9 +12,7 @@ const Policy = () => {
     const fetchPolicy = async () => {
         try {
             const response = await axios.get(
-                `https://theyvoteforyou.org.au/api/v1/policies/${id}.json?key=${
-                    import.meta.env.VITE_THEY_VOTE_FOR_YOU_API_KEY
-                }`
+                `http://localhost:3001/api/policies/${id}`
             )
             setPolicy(response.data)
             setFilteredVoters(response.data.people_comparisons)

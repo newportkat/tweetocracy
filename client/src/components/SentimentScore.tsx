@@ -13,7 +13,6 @@ const SentimentScore = ({ score }) => {
         "😁",
         "😍",
     ]
-    console.log(score)
 
     return (
         <div className="flex items-center justify-center p-2 flex-wrap mb-4 sm:mb-0">

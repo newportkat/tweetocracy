@@ -65,7 +65,6 @@ const Politician = () => {
     }, [id])
 
     useEffect(() => {
-        console.log(tweets)
         if (tweets.length > 0) {
             const fetchPoliticianInfo = async () => {
                 try {
