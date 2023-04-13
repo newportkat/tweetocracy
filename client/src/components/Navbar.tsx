@@ -5,9 +5,6 @@ import Close from "../assets/svgFunctions/Close"
 import HamburgerMenu from "../assets/svgFunctions/HamburgerMenu"
 
 const Navbar = ({ showMobileMenu, toggleMenu }) => {
-    useEffect(() => {
-        console.log(showMobileMenu)
-    }, [showMobileMenu])
 
     return (
         <nav className="relative flex items-center justify-between p-6 text-gray-800 sm:block sm:px-8 sm:py-10 md:px-12 lg:px-16 xl:px-24">
