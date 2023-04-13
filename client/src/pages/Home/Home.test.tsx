@@ -1,6 +1,6 @@
-import React from "react"
 import { render, screen } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
+import React from "react"
 import { BrowserRouter } from "react-router-dom"
 import Home from "./Home"
 

@@ -1,8 +1,8 @@
 import React from "react"
 import { Link } from "react-router-dom"
-import alpBird from "../assets/images/alp-bird.png"
-import coalitionBird from "../assets/images/coalition-bird.png"
-import twitterAbstractLogo from "../assets/images/twitter-abstract-logo.png"
+import alpBird from "../../assets/images/alp-bird.png"
+import coalitionBird from "../../assets/images/coalition-bird.png"
+import twitterAbstractLogo from "../../assets/images/twitter-abstract-logo.png"
 
 const Parties = () => {
     return (

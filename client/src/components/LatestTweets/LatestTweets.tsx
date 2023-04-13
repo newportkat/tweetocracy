@@ -1,7 +1,7 @@
 import axios from "axios"
 import React, { useEffect, useRef, useState } from "react"
-import HashtagTweet from "./HashtagTweet"
-import Loader from "./Loader"
+import HashtagTweet from "../HashTagTweet/HashtagTweet"
+import Loader from "../Loader/Loader"
 
 const LatestTweets = () => {
     const [tweets, setTweets] = useState([])
@@ -58,7 +58,7 @@ const LatestTweets = () => {
                     ))}
                 </div>
             ) : (
-            <Loader/>
+                <Loader />
             )}
             {tweets.length > 0 && (
                 <button

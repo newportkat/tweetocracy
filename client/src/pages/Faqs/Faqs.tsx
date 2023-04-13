@@ -1,7 +1,7 @@
 import React, { useState } from "react"
-import Down from "../assets/svgFunctions/Down"
-import Up from "../assets/svgFunctions/Up"
-import { faqList } from "../data/faqList"
+import Down from "../../assets/svgFunctions/Down"
+import Up from "../../assets/svgFunctions/Up"
+import { faqList } from "../../data/faqList"
 
 const Faqs = () => {
     const [activeIndex, setActiveIndex] = useState(null)

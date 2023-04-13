@@ -1,7 +1,7 @@
 import axios from "axios"
 import React, { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
-import Loader from "../components/Loader"
+import Loader from "../../components/Loader/Loader"
 
 const Policies = () => {
     const [policies, setPolicies] = useState([])

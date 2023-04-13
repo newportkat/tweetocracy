@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react"
 import { Link, useParams } from "react-router-dom"
-import PoliticianCard from "../components/PoliticianCard"
-import { alpData } from "../data/alpData"
-import { coalitionData } from "../data/coalitionData"
+import PoliticianCard from "../../components/PoliticianCard/PoliticianCard"
+import { alpData } from "../../data/alpData"
+import { coalitionData } from "../../data/coalitionData"
 
 const Party = () => {
     const { id } = useParams()

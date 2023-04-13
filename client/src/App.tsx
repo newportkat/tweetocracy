@@ -1,16 +1,16 @@
 import React, { useState } from "react"
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom"
-import Footer from "./components/Footer"
-import Navbar from "./components/Navbar"
-import VignetteOverlay from "./components/VignetteOverlay"
-import Error from "./pages/Error"
-import Faqs from "./pages/Faqs"
-import Home from "./pages/Home"
-import Parties from "./pages/Parties"
-import Party from "./pages/Party"
-import Policies from "./pages/Policies"
-import Policy from "./pages/Policy"
-import Politician from "./pages/Politician"
+import Footer from "./components/Footer/Footer"
+import Navbar from "./components/Navbar/Navbar"
+import VignetteOverlay from "./components/VignetteOverlay/VignetteOverlay"
+import Error from "./pages/Error/Error"
+import Faqs from "./pages/Faqs/Faqs"
+import Home from "./pages/Home/Home"
+import Parties from "./pages/Parties/Parties"
+import Party from "./pages/Party/Party"
+import Policies from "./pages/Policies/Policies"
+import Policy from "./pages/Policy/Policy"
+import Politician from "./pages/Politician/Politician"
 
 const Layout = () => {
     const [showMobileMenu, setShowMobileMenu] = useState(false)
@@ -38,12 +38,11 @@ const Layout = () => {
                     <div className="absolute inset-0 z-10 bg-black opacity-80"></div>
                 )}
                 <Outlet />
-            <Footer />
+                <Footer />
             </div>
         </div>
     )
 }
-
 
 const router = createBrowserRouter([
     {

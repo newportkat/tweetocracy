@@ -1,8 +1,8 @@
 import axios from "axios"
 import React, { useEffect, useState } from "react"
 import { Link, useParams } from "react-router-dom"
-import Loader from "../components/Loader"
-import VoterCard from "../components/VoterCard"
+import Loader from "../../components/Loader/Loader"
+import VoterCard from "../../components/VoterCard/VoterCard"
 
 const Policy = () => {
     const { id } = useParams()

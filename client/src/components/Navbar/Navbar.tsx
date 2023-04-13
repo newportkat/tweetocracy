@@ -1,11 +1,10 @@
 import React, { useEffect } from "react"
 import { Link } from "react-router-dom"
-import Ibis from "../assets/images/ibis.png"
-import Close from "../assets/svgFunctions/Close"
-import HamburgerMenu from "../assets/svgFunctions/HamburgerMenu"
+import Close from "../../assets/svgFunctions/Close"
+import HamburgerMenu from "../../assets/svgFunctions/HamburgerMenu"
+import Ibis from "../../assets/images/ibis.png"
 
 const Navbar = ({ showMobileMenu, toggleMenu }) => {
-
     return (
         <nav className="relative flex items-center justify-between p-6 text-gray-800 sm:block sm:px-8 sm:py-10 md:px-12 lg:px-16 xl:px-24">
             <div

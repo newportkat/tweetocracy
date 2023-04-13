@@ -2,17 +2,17 @@ import axios from "axios"
 import React, { useEffect, useState } from "react"
 import { Link, useParams } from "react-router-dom"
 import WordCloud from "react-wordcloud"
-import Loader from "../components/Loader"
-import PoliticianTweet from "../components/PoliticianTweet"
-import SentimentScore from "../components/SentimentScore"
-import { stopWords } from "../data/stopWords"
-import { twitterData } from "../data/twitterData"
+import Loader from "../../components/Loader/Loader"
+import PoliticianTweet from "../../components/PoliticianTweet/PoliticianTweet"
+import SentimentScore from "../../components/SentimentScore/SentimentScore"
+import { stopWords } from "../../data/stopWords"
+import { twitterData } from "../../data/twitterData"
 import {
     calculateAverageSentiment,
     calculateOverallEngagement,
     fetchPolitician,
     processTweetsForWordCloud,
-} from "../utils/utils"
+} from "../../utils/utils"
 
 const Politician = () => {
     const { id } = useParams()
@@ -58,7 +58,7 @@ const Politician = () => {
                 const sentimentScore = calculateAverageSentiment(response.data)
                 setAverageSentiment(sentimentScore)
             } catch (error) {
-                console.log(error)
+                console.error(error)
             }
         }
         fetchTweets()

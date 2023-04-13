@@ -1,7 +1,7 @@
 import React from "react"
 import { Link } from "react-router-dom"
-import Birds from "../assets/images/birds.png"
-import LatestTweets from "../components/LatestTweets"
+import LatestTweets from "../../components/LatestTweets/LatestTweets"
+import Birds from "../../assets/images/birds.png"
 
 const Home = () => {
     return (
