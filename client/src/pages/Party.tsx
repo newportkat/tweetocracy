@@ -10,13 +10,8 @@ const Party = () => {
     const [politicians, setPoliticians] = useState([])
 
     useEffect(() => {
-        if (id === "alp") {
-            setPoliticians(alpData)
-            setParty("ALP")
-        } else if (id === "coalition") {
-            setPoliticians(coalitionData)
-            setParty("Coalition")
-        }
+        setParty(id === "alp" ? "ALP" : "Coalition")
+        setPoliticians(id === "alp" ? alpData : coalitionData)
     }, [id])
 
     return (
@@ -27,8 +22,8 @@ const Party = () => {
             </h2>
             <div className="flex flex-col items-center gap-4 p-8">
                 <p className="text-center leading-relaxed">
-                   Fetch the latest tweets of each party
-                    member with just one click.
+                    Fetch the latest tweets of each party member with just one
+                    click.
                 </p>
                 <p className="text-center leading-relaxed">
                     Analyze their tweets for{" "}
@@ -45,7 +40,7 @@ const Party = () => {
                 </p>
                 <Link
                     to="/parties"
-                    className="hover:bg-gray-600 sm:mt-2 rounded border-2 border-white bg-gray-800 px-4 py-2 text-xs font-bold tracking-wider text-white"
+                    className="rounded border-2 border-white bg-gray-800 px-4 py-2 text-xs font-bold tracking-wider text-white hover:bg-gray-600 sm:mt-2"
                 >
                     BACK TO PARTIES
                 </Link>
