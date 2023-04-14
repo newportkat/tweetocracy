@@ -5,8 +5,8 @@ import WordCloud from "react-wordcloud"
 import Loader from "../../components/Loader/Loader"
 import PoliticianTweet from "../../components/PoliticianTweet/PoliticianTweet"
 import SentimentScore from "../../components/SentimentScore/SentimentScore"
-import { stopWords } from "../../data/stopWords"
-import { twitterData } from "../../data/twitterData"
+import { stopWords } from "../../data/stopWords/stopWords"
+import { twitterData } from "../../data/twitterData/twitterData"
 import {
     calculateAverageSentiment,
     calculateOverallEngagement,

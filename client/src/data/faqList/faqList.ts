@@ -1,4 +1,6 @@
-export const faqList = [
+import { IFaq } from "./faqList.types"
+
+export const faqList: IFaq[] = [
     {
         question: "Where does your data come from?",
         answer: "We source our data from two different APIs. For tweets, we use the Twitter API to fetch the latest tweets from Australian politicians. For data about politicians and policies, we use the They Vote For You API, which can be found at https://theyvoteforyou.org.au/. This allows us to provide up-to-date and accurate information about politicians and their voting history, as well as the latest tweets from their official Twitter accounts.",

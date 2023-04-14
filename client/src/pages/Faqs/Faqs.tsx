@@ -1,17 +1,25 @@
-import React, { useState } from "react"
+import React, { FC, useState } from "react"
 import Down from "../../assets/svgFunctions/Down"
 import Up from "../../assets/svgFunctions/Up"
-import { faqList } from "../../data/faqList"
+import { faqList } from "../../data/faqList/faqList"
+import { IFaq } from "../../data/faqList/faqList.types"
+import { FaqListProps } from "./Faqs.types"
 
 const Faqs = () => {
-    const [activeIndex, setActiveIndex] = useState(null)
+    const [activeIndex, setActiveIndex] = useState<number | null>(null)
 
-    const onQuestionClick = (index) => {
+    const onQuestionClick = (index: number): void => {
         if (index === activeIndex) {
             setActiveIndex(null)
         } else {
             setActiveIndex(index)
         }
+    }
+
+    const faqListProps: FaqListProps = {
+        faqList,
+        activeIndex,
+        onQuestionClick,
     }
 
     return (
@@ -20,12 +28,12 @@ const Faqs = () => {
                 FAQs
             </p>
             <div className="flex flex-col items-center justify-center gap-8 p-8">
-                {faqList.map((faq, index) => (
+                {faqList.map((faq: IFaq, index: number) => (
                     <div className="border-b" key={index}>
                         <div
                             className="flex cursor-pointer items-center justify-center gap-4"
                             role="button"
-                            tabIndex="0"
+                            tabIndex={0}
                             onClick={() => onQuestionClick(index)}
                             onKeyDown={(e) => {
                                 if (e.key === " ") {
