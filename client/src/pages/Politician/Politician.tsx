@@ -12,16 +12,22 @@ import {
     fetchPolitician,
     processTweetsForWordCloud,
 } from "../../utils/utils"
-import { IFetchPolitician, IPoliticianInfo, ITweets, IWordCloudData } from "./Politician.types"
+import {
+    IFetchPolitician,
+    IPoliticianInfo,
+    ITweets,
+    IWordCloudData,
+} from "./Politician.types"
 
 const Politician = () => {
-    const { id } = useParams< string >()
+    const { id } = useParams<string>()
     const [tweets, setTweets] = useState<ITweets[]>([])
     const [politician, setPolitician] = useState<IFetchPolitician | null>(null)
     const [wordCloudData, setWordCloudData] = useState<IWordCloudData[]>([])
     const [overallEngagement, setOverallEngagement] = useState<number>(0)
     const [averageSentiment, setAverageSentiment] = useState<number>(0)
-    const [politicianInfo, setPoliticianInfo] = useState<IPoliticianInfo | null>(null)
+    const [politicianInfo, setPoliticianInfo] =
+        useState<IPoliticianInfo | null>(null)
 
     useEffect(() => {
         const fetchAndSetPolitician = async () => {
@@ -131,7 +137,7 @@ const Politician = () => {
                             WORDCLOUD:
                         </p>
                         {wordCloudData.length > 0 ? (
-                            <div>
+                            <div className="m-8 rounded bg-white p-4 shadow-xl">
                                 <WordCloud
                                     words={wordCloudData}
                                     options={{
@@ -144,14 +150,6 @@ const Politician = () => {
                                         spiral: "archimedean",
                                         padding: 4,
                                     }}
-                                    // style={{
-                                    //     backgroundColor: "#fff",
-                                    //     borderRadius: "5px",
-                                    //     boxShadow:
-                                    //         "0 20px 25px -5px rgb(0 0 0 / 0.4)",
-                                    //     margin: "2.5em",
-                                    //     padding: ".5em",
-                                    // }}
                                 />
                             </div>
                         ) : (
