@@ -3,7 +3,11 @@ const express = require("express")
 const cors = require("cors")
 const app = express()
 const { getUserTweets, getLatestTweets, getAuthorData } = require("./twitter")
-const { getPolicies, getPolicyById } = require("./theyVoteForYou")
+const {
+    getPolicies,
+    getPolicyById,
+    getPoliticianById,
+} = require("./theyVoteForYou")
 
 app.use(cors())
 
@@ -54,6 +58,17 @@ app.get("/api/policies/:id", async (req, res) => {
         res.json(policy)
     } catch (error) {
         res.status(500).json({ message: "Error fetching policy data" })
+    }
+})
+
+app.get("/api/politician/:id", async (req, res) => {
+    const id = req.params.id
+    try {
+        const politician = await getPoliticianById(id)
+        res.json(politician)
+    } catch (error) {
+        console.error(error)
+        res.status(500).json({ error: error.message })
     }
 })
 

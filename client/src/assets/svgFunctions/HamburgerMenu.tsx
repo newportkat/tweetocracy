@@ -1,6 +1,7 @@
 import React from "react"
+import { ISvgFunctionProps } from "./svgFunctions.types"
 
-const HamburgerMenu = (props) => {
+const HamburgerMenu = (props : ISvgFunctionProps) => {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"

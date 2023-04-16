@@ -1,6 +1,7 @@
 import React from "react"
+import { ISvgFunctionProps } from "./svgFunctions.types"
 
-function Down(props) {
+function Down(props: ISvgFunctionProps) {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"

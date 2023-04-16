@@ -33,7 +33,24 @@ const getPolicyById = async (policyId) => {
     }
 }
 
+const getPoliticianById = async (id) => {
+    try {
+        const response = await axios.get(
+            `https://theyvoteforyou.org.au/api/v1/people/${id}.json?key=${theyVoteForYouApiKey}`
+        )
+        if (response.status !== 200) {
+            throw new Error(
+                `${response.status} ${response.statusText}:\n${response.data}`
+            )
+        }
+        return response.data
+    } catch (error) {
+        throw new Error(error.message)
+    }
+}
+
 module.exports = {
     getPolicies,
     getPolicyById,
+    getPoliticianById,
 }
