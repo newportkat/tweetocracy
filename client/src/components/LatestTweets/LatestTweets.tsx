@@ -1,11 +1,11 @@
 import axios from "axios"
 import React, { useEffect, useRef, useState } from "react"
 import HashtagTweet from "../HashTagTweet/HashtagTweet"
-import { ITweet } from "../HashTagTweet/HashtagTweet.types"
+import { IHashTagTweet } from "../HashTagTweet/HashtagTweet.types"
 import Loader from "../Loader/Loader"
 
 const LatestTweets = () => {
-    const [tweets, setTweets] = useState<ITweet[]>([])
+    const [tweets, setTweets] = useState<IHashTagTweet[]>([])
     const [refreshClicked, setRefreshClicked] = useState<boolean>(false)
 
 const sectionRef = useRef<HTMLElement | null>(null)

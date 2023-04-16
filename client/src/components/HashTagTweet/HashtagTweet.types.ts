@@ -1,4 +1,4 @@
-export interface ITweet {
+export interface IHashTagTweet {
     public_metrics: {
         retweet_count: number
         reply_count: number
@@ -18,5 +18,5 @@ export interface ITweet {
 }
 
 export interface IHashtagTweetProps {
-    tweet: ITweet
+    tweet: IHashTagTweet
 }

@@ -70,6 +70,9 @@ const Politician = () => {
         fetchTweets()
     }, [id])
 
+    useEffect(()=>{console.log(tweets);
+    },[tweets])
+
     useEffect(() => {
         if (tweets.length > 0) {
             const fetchPoliticianInfo = async () => {
