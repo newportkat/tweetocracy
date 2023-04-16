@@ -1,14 +1,19 @@
-import React from "react"
+import React, { useEffect } from "react"
 import TwitterLogo from "../../assets/svgFunctions/TwitterLogo"
+import { IHashtagTweetProps } from "./HashtagTweet.types"
 
-const formatDate = (dateString) => {
-    const options = { day: "numeric", month: "short", year: "numeric" }
+const formatDate = (dateString: string): string => {
+    const options: Intl.DateTimeFormatOptions = {
+        day: "numeric",
+        month: "short",
+        year: "numeric",
+    }
     const date = new Date(dateString)
     const formattedDate = date.toLocaleDateString("en-US", options)
     return formattedDate.replace(",", "")
 }
 
-const HashtagTweet = ({ tweet }) => {
+const HashtagTweet: React.FC<IHashtagTweetProps> = ({ tweet }) => {
     return (
         <div className="flex w-72 flex-col gap-2 rounded bg-white p-4 shadow-xl">
             <div className="flex items-center gap-2">

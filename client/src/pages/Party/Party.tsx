@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react"
 import { Link, useParams } from "react-router-dom"
 import PoliticianCard from "../../components/PoliticianCard/PoliticianCard"
-import { alpData } from "../../data/alpData/alpData"
-import { coalitionData } from "../../data/coalitionData/coalitionData"
+import { alpData } from "../../data/politicianData/alpData/alpData"
+import { coalitionData } from "../../data/politicianData/coalitionData/coalitionData"
+import { IPolitician } from "../../data/politicianData/politician.types"
 
 const Party = () => {
-    const { id } = useParams()
-    const [party, setParty] = useState("")
-    const [politicians, setPoliticians] = useState([])
+    const { id } = useParams<{ id: string }>()
+    const [party, setParty] = useState< string >("")
+    const [politicians, setPoliticians] = useState<IPolitician[]>([])
 
     useEffect(() => {
         setParty(id === "alp" ? "ALP" : "Coalition")

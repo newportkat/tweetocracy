@@ -2,11 +2,12 @@ import axios from "axios"
 import React, { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import Loader from "../../components/Loader/Loader"
+import { IPolicy } from "./Policies.types"
 
 const Policies = () => {
-    const [policies, setPolicies] = useState([])
-    const [displayedPolicies, setDisplayedPolicies] = useState(20)
-    const [searchTerm, setSearchTerm] = useState("")
+    const [policies, setPolicies] = useState<IPolicy[]>([])
+    const [displayedPolicies, setDisplayedPolicies] = useState<number>(20)
+    const [searchTerm, setSearchTerm] = useState< string >("")
 
     const fetchPolicies = async () => {
         try {
@@ -19,7 +20,7 @@ const Policies = () => {
         }
     }
 
-    const handleSearchInputChange = (e) => {
+    const handleSearchInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSearchTerm(e.target.value)
     }
 

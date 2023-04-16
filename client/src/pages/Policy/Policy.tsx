@@ -3,11 +3,20 @@ import React, { useEffect, useState } from "react"
 import { Link, useParams } from "react-router-dom"
 import Loader from "../../components/Loader/Loader"
 import VoterCard from "../../components/VoterCard/VoterCard"
+import {
+    IDivision,
+    ILatestMember,
+    IPersonComparison,
+    IPolicy,
+    IPolicyDivision,
+} from "./Policy.types"
 
 const Policy = () => {
-    const { id } = useParams()
-    const [policy, setPolicy] = useState(null)
-    const [filteredVoters, setFilteredVoters] = useState([])
+    const { id } = useParams<string>()
+    const [policy, setPolicy] = useState<IPolicy | null>(null)
+    const [filteredVoters, setFilteredVoters] = useState<IPersonComparison[]>(
+        []
+    )
 
     const fetchPolicy = async () => {
         try {
@@ -21,7 +30,7 @@ const Policy = () => {
         }
     }
 
-    const getMostRecentVoteDate = (policyDivisions) => {
+    const getMostRecentVoteDate = (policyDivisions: IPolicyDivision[]) => {
         let latestDate = new Date(policyDivisions[0].division.date)
         policyDivisions.forEach(({ division }) => {
             const divisionDate = new Date(division.date)
@@ -38,16 +47,16 @@ const Policy = () => {
             .replace(/\//g, "-") // replace slashes with dashes
     }
 
-    const handleFilterChange = (e) => {
+    const handleFilterChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const filter = e.target.value
-        const filtered = policy.people_comparisons.filter((voter) =>
+        const filtered = policy?.people_comparisons.filter((voter) =>
             filter === "all"
                 ? true
                 : filter === "yes"
                 ? voter.voted
                 : !voter.voted
         )
-        setFilteredVoters(filtered)
+        setFilteredVoters(filtered ?? []) // if null or undefined, return an empty array
     }
 
     useEffect(() => {

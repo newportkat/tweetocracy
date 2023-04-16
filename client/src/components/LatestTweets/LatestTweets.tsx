@@ -1,13 +1,14 @@
 import axios from "axios"
 import React, { useEffect, useRef, useState } from "react"
 import HashtagTweet from "../HashTagTweet/HashtagTweet"
+import { ITweet } from "../HashTagTweet/HashtagTweet.types"
 import Loader from "../Loader/Loader"
 
 const LatestTweets = () => {
-    const [tweets, setTweets] = useState([])
-    const [refreshClicked, setRefreshClicked] = useState(false)
+    const [tweets, setTweets] = useState<ITweet[]>([])
+    const [refreshClicked, setRefreshClicked] = useState<boolean>(false)
 
-    const sectionRef = useRef(null)
+const sectionRef = useRef<HTMLElement | null>(null)
 
     const fetchTweets = async () => {
         setTweets([])
@@ -36,7 +37,7 @@ const LatestTweets = () => {
 
     useEffect(() => {
         if (refreshClicked && tweets.length > 0) {
-            sectionRef.current.scrollIntoView({
+            sectionRef.current?.scrollIntoView({
                 behavior: "smooth",
             })
             setRefreshClicked(false)

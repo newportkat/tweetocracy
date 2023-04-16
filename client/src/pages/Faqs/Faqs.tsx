@@ -2,7 +2,7 @@ import React, { FC, useState } from "react"
 import Down from "../../assets/svgFunctions/Down"
 import Up from "../../assets/svgFunctions/Up"
 import { faqList } from "../../data/faqList/faqList"
-import { IFaq } from "../../data/faqList/faqList.types"
+import { IFaq } from "../../data/faqList/faqList.d"
 import { FaqListProps } from "./Faqs.types"
 
 const Faqs = () => {
@@ -14,12 +14,6 @@ const Faqs = () => {
         } else {
             setActiveIndex(index)
         }
-    }
-
-    const faqListProps: FaqListProps = {
-        faqList,
-        activeIndex,
-        onQuestionClick,
     }
 
     return (

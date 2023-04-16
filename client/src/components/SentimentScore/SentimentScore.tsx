@@ -1,6 +1,7 @@
 import React from "react"
+import { ISentimentScoreProps } from "./SentimentScore.types"
 
-const SentimentScore = ({ score }) => {
+const SentimentScore: React.FC<ISentimentScoreProps> = ({ score }) => {
     const sentimentEmojis = [
         "🤬",
         "😠",

@@ -3,8 +3,9 @@ import { Link } from "react-router-dom"
 import Close from "../../assets/svgFunctions/Close"
 import HamburgerMenu from "../../assets/svgFunctions/HamburgerMenu"
 import Ibis from "../../assets/images/ibis.png"
+import { INavbarProps } from "./Navbar.types"
 
-const Navbar = ({ showMobileMenu, toggleMenu }) => {
+const Navbar: React.FC<INavbarProps> = ({ showMobileMenu, toggleMenu }) => {
     return (
         <nav className="relative flex items-center justify-between p-6 text-gray-800 sm:block sm:px-8 sm:py-10 md:px-12 lg:px-16 xl:px-24">
             <div

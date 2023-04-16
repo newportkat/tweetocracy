@@ -1,4 +1,4 @@
-import { IFaq } from "../../data/faqList/faqList.types"
+import { IFaq } from "../../data/faqList/faqList.d"
 
 export interface FaqListProps {
     faqList: IFaq[]

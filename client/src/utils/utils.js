@@ -1,6 +1,6 @@
 import axios from "axios"
 import Sentiment from "sentiment"
-import { stopWords } from "../data/stopWords"
+import { stopWords } from "../data/stopWords/stopWords"
 
 export const fetchPolitician = async (id) => {
     try {
@@ -75,3 +75,4 @@ export const calculateOverallEngagement = (tweets) => {
 
     return averageScore
 }
+

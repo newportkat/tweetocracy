@@ -5,7 +5,6 @@ import WordCloud from "react-wordcloud"
 import Loader from "../../components/Loader/Loader"
 import PoliticianTweet from "../../components/PoliticianTweet/PoliticianTweet"
 import SentimentScore from "../../components/SentimentScore/SentimentScore"
-import { stopWords } from "../../data/stopWords/stopWords"
 import { twitterData } from "../../data/twitterData/twitterData"
 import {
     calculateAverageSentiment,
@@ -13,15 +12,16 @@ import {
     fetchPolitician,
     processTweetsForWordCloud,
 } from "../../utils/utils"
+import { IFetchPolitician, IPoliticianInfo, ITweets, IWordCloudData } from "./Politician.types"
 
 const Politician = () => {
-    const { id } = useParams()
-    const [tweets, setTweets] = useState([])
-    const [politician, setPolitician] = useState(null)
-    const [wordCloudData, setWordCloudData] = useState([])
-    const [overallEngagement, setOverallEngagement] = useState(0)
-    const [averageSentiment, setAverageSentiment] = useState(0)
-    const [politicianInfo, setPoliticianInfo] = useState(null)
+    const { id } = useParams< string >()
+    const [tweets, setTweets] = useState<ITweets[]>([])
+    const [politician, setPolitician] = useState<IFetchPolitician | null>(null)
+    const [wordCloudData, setWordCloudData] = useState<IWordCloudData[]>([])
+    const [overallEngagement, setOverallEngagement] = useState<number>(0)
+    const [averageSentiment, setAverageSentiment] = useState<number>(0)
+    const [politicianInfo, setPoliticianInfo] = useState<IPoliticianInfo | null>(null)
 
     useEffect(() => {
         const fetchAndSetPolitician = async () => {
@@ -144,14 +144,14 @@ const Politician = () => {
                                         spiral: "archimedean",
                                         padding: 4,
                                     }}
-                                    style={{
-                                        backgroundColor: "#fff",
-                                        borderRadius: "5px",
-                                        boxShadow:
-                                            "0 20px 25px -5px rgb(0 0 0 / 0.4)",
-                                        margin: "2.5em",
-                                        padding: ".5em",
-                                    }}
+                                    // style={{
+                                    //     backgroundColor: "#fff",
+                                    //     borderRadius: "5px",
+                                    //     boxShadow:
+                                    //         "0 20px 25px -5px rgb(0 0 0 / 0.4)",
+                                    //     margin: "2.5em",
+                                    //     padding: ".5em",
+                                    // }}
                                 />
                             </div>
                         ) : (

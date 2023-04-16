@@ -1,3 +1,4 @@
-import { IFaq } from "./faqList.types"
-
-export const faqList: IFaq[]
+export interface IFaq {
+    question: string
+    answer: string
+}

@@ -13,7 +13,7 @@ import Policy from "./pages/Policy/Policy"
 import Politician from "./pages/Politician/Politician"
 
 const Layout = () => {
-    const [showMobileMenu, setShowMobileMenu] = useState(false)
+    const [showMobileMenu, setShowMobileMenu] = useState< boolean >(false)
 
     const scrollUp = () => {
         window.scrollTo(0, 0)
