@@ -4,11 +4,6 @@ Tweetocracy is a web application designed to provide insights into Australian po
 
 The application is deployed using AWS Amplify and Elastic Beanstalk and can be accessed at [tweetocracy.com.au](https://tweetocracy.com.au).
 
-## Table of Contents
-
-- [Features](#features)
-- [Technologies](#technologies)
-
 ## Features
 
 - **Latest Tweets**: The homepage displays the latest tweets with the hashtag #auspol.
