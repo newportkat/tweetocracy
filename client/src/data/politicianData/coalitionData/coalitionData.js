@@ -294,20 +294,6 @@ export const coalitionData = [
         twitterId: "1924883101",
     },
     {
-        id: 10843,
-        latest_member: {
-            id: 681,
-            name: {
-                first: "Andrew",
-                last: "Hastie",
-            },
-            electorate: "Canning",
-            house: "representatives",
-            party: "Liberal Party",
-        },
-        twitterId: "",
-    },
-    {
         id: 10350,
         latest_member: {
             id: 727,

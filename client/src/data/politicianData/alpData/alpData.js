@@ -70,20 +70,6 @@ export const alpData = [
         twitterId: "227531567",
     },
     {
-        id: 10708,
-        latest_member: {
-            id: 100855,
-            name: {
-                first: "Don",
-                last: "Farrell",
-            },
-            electorate: "SA",
-            house: "senate",
-            party: "Australian Labor Party",
-        },
-        twitterId: "",
-    },
-    {
         id: 10081,
         latest_member: {
             id: 69,
@@ -292,20 +278,6 @@ export const alpData = [
             party: "Australian Labor Party",
         },
         twitterId: "304856790",
-    },
-    {
-        id: 10749,
-        latest_member: {
-            id: 616,
-            name: {
-                first: "Ed",
-                last: "Husic",
-            },
-            electorate: "Chifley",
-            house: "representatives",
-            party: "Australian Labor Party",
-        },
-        twitterId: "",
     },
     {
         id: 10814,
